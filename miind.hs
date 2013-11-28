@@ -20,10 +20,6 @@ instance Node SparseNode where
                                                    where f acc ((SparseNode a _ _), w) = a * w + acc 
 --Architecture/ NetLib
 
--- Mit der Architecture bin ich mir noch nicht sicher, wie ich das Benutze und ob überhaupt!
-data Architecture = [ANode] 
-data ANode = ALeaf | ANode [ANode]
-
 data Layer n = Layer [n] --TODO How can I restrict n to be instance of typeclass Node?
     deriving (Show)
 
@@ -31,8 +27,6 @@ instance Functor Layer where
     fmap f (Layer n) = Layer $ map f n
 
 -- Test data
-
--- Ich beschriebe hier jetzt schon eine Implementation, nicht einer Architecture!
 
 
 -- nodes
@@ -54,5 +48,5 @@ l1 = Layer [n1, n2, n3, n4, n5]
 l2 = Layer [n6, n7, n8]
 l3 = Layer [n9, n10]
 
-
-
+main = let nodeList = [n1, n2, n3, n4] in
+              putStrLn $ show $ fmap evaluate nodeList
